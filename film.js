@@ -103,4 +103,66 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+	id: `Titanic`,
+		nazev: 'Titanic',
+		plakat: {
+			url: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwQlOeIost26Qv6cAAT73c9LLi0oRcXOJ6QQ5h3J1fUogSX_sD`,
+			sirka: 420,
+			vyska: 594,	
+		},
+		ochutnavka: `Epický romantický film o osudové lásce na palubě legendární lodi.`,
+		popis:
+			`Vypráví příběh chudého umělce Jacka a bohaté dívky Rose, jejichž láska vzniká na palubě luxusní lodi Titanic. Děj se odehrává během její osudové plavby v roce 1912 a spojuje silný milostný příběh s historickou katastrofou, která dodnes patří k nejznámějším námořním tragédiím.`, 
+		premiera: `1997-12-19`,
+	},
 ]
+
+const film_id = window.location.hash.slice(1);
+
+const film = filmy.find(movie => movie.id === film_id);
+
+const detail_filmu = document.querySelector("#detail-filmu");
+detail_filmu.querySelector("img.img-fluid").src = film.plakat.url;
+detail_filmu.querySelector(".card-title").textContent = film.nazev;
+detail_filmu.querySelector(".card-body .card-text").textContent = film.popis;
+document.querySelector("#premiera strong").textContent = film.premiera;
+
+
+const poznamka = document.querySelector("#note-form");
+
+poznamka.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+let vyplneny_formular = false;
+const message_input = document.querySelector("#message-input");
+if (!message_input.value){
+	message_input.classList.add("is-invalid");
+	 if (!vyplneny_formular) {
+      message_input.focus();
+      vyplneny_formular = true;
+	 }
+}else {
+	message_input.classList.remove("is-invalid");
+		
+};
+
+const checkbox = document.querySelector("#terms-checkbox");
+if(!checkbox.checked){
+	checkbox.classList.add("is-invalid");
+	if (!vyplneny_formular) {
+      checkbox.focus();
+      vyplneny_formular = true;
+	 }
+}else {
+	checkbox.classList.remove("is-invalid");
+};
+
+const text = document.querySelector(".card-text");
+if (message_input.value && checkbox.checked){
+	poznamka.innerHTML = `<p class="card-text">${message_input.value}</p>`;
+};
+});
+
+
+

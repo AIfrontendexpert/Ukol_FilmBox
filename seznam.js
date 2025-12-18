@@ -103,4 +103,43 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: `Titanic`,
+		nazev: 'Titanic',
+		plakat: {
+			url: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwQlOeIost26Qv6cAAT73c9LLi0oRcXOJ6QQ5h3J1fUogSX_sD`,
+			sirka: 420,
+			vyska: 594,	
+		},
+		ochutnavka: `Epický romantický film o osudové lásce na palubě legendární lodi.`,
+		popis:
+			`Vypráví příběh chudého umělce Jacka a bohaté dívky Rose, jejichž láska vzniká na palubě luxusní lodi Titanic. Děj se odehrává během její osudové plavby v roce 1912 a spojuje silný milostný příběh s historickou katastrofou, která dodnes patří k nejznámějším námořním tragédiím.`, 
+		premiera: `1997-12-19`,
+	}, 
 ]
+
+
+const seznamFilmu = document.querySelector("#seznam-filmu");
+
+seznamFilmu.innerHTML = "";
+
+filmy.forEach(film => {
+	seznamFilmu.innerHTML += `
+<div class="col">
+   <div class="card">
+    <img
+      src=${film.plakat.url}
+      width=${film.plakat.sirka}
+      height=${film.plakat.vyska}
+      class="card-img-top"
+      alt="Plakát filmu ${film.plakat}
+    />
+<div class="card-body">
+      <h5 class="card-title">${film.nazev}</h5>
+      <p class="card-text">${film.ochutnavka}</p>
+      <a href="film.html#${film.id}" class="btn btn-primary">Přehrát</a>
+    </div>
+  </div>
+</div>`
+});
+
